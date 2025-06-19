@@ -1,12 +1,16 @@
 package br.com.lorran.optionalexercises;
 
+import br.com.lorran.optionalexercises.entities.AddressEntity;
+import br.com.lorran.optionalexercises.entities.UserEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Optional;
 
-public class ClassOne {
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class Classe1BasicUsesOptionalExercises {
 
     @Test
     @DisplayName("Exercício 1: usando métodos 'of', 'empty' e 'ofNullable' para definir o Optional")
@@ -75,7 +79,57 @@ public class ClassOne {
     @DisplayName("Exercício 6: usando o orElseThrow() caso não tenha dado")
     void exercise6() {
         Optional<String> noData = Optional.ofNullable(null);
-        String message = noData.orElseThrow(() -> new IllegalArgumentException("Num tem nada aqui não ein"));
-        System.out.println(message);
+        assertThrows(IllegalArgumentException.class, () -> noData.orElseThrow(() -> new IllegalArgumentException("Num tem nada aqui não ein")));
+    }
+
+    @Test
+    @DisplayName("Exercício 7: usando o optional com o map para deixar todas as letras em maiúsculo")
+    void exercise7() {
+        Optional<String> name = Optional.of("mary");
+        Optional<String> upperCaseName = name.map(String::toUpperCase);
+        upperCaseName.ifPresent(System.out::println);
+    }
+
+    @Test
+    @DisplayName("Exercício 8: usando o optional com o flatMap")
+    void exercise8() {
+        /**
+         - map() é usado quando a função passada retorna um valor normal (não Optional).
+         - flatMap() é usado quando a função passada já retorna um Optional — ou seja, evita um Optional<Optional<T>>.
+
+         PORTANTO, A REGRA BÁSICA É:
+         - map(): quando sua função retorna um tipo normal (ex: String, Integer, etc).
+         - flatMap(): quando sua função já retorna um Optional.
+         */
+
+        Optional<UserEntity> userOpt = Optional.of(new UserEntity());
+
+        String city = userOpt
+                .flatMap(UserEntity::getAddressOptional) // retorna Optional<AddressEntity>
+                .map(AddressEntity::getCity)      // retorna Optional<String>
+                .orElse("Cidade desconhecida");
+
+        System.out.println(city);
+    }
+
+    @Test
+    @DisplayName("Exercício 9: usando o optional para trabalhar com formas aninhadas de null tradicional")
+    void exercise9() {
+        /**
+         * Essa seria a forma tradicional de fazermos uma verificação se é nulo ou não
+
+            UserEntity user = new UserEntity();
+            if (user != null && user.getAddress() != null) {
+                System.out.println(user.getAddress().getCity());
+            }
+         */
+
+        // Abaixo vamos ver como fazemos as conferências acima com o Optional
+        UserEntity user = new UserEntity();
+        Optional.ofNullable(user)
+                .map(UserEntity::getAddress)
+                .map(AddressEntity::getCity)
+                .ifPresent(System.out::println);
+
     }
 }
