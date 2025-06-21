@@ -10,7 +10,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class Classe1BasicUsesOptionalExercises {
+public class LearningOptionalExercises {
 
     @Test
     @DisplayName("Exercício 1: usando métodos 'of', 'empty' e 'ofNullable' para definir o Optional")

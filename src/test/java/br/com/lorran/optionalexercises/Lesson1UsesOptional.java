@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: fazer os exercícios que coloquei no ChatGPT
-    // Lembrar de entrar no Optional, ver quais são os métodos que existem e testar com cada um
-public class Class2AdvancedUsesOptionalExercises {
+public class Lesson1UsesOptional {
 
     @Test
     void exercicio1(){
@@ -22,9 +20,22 @@ public class Class2AdvancedUsesOptionalExercises {
                 System.out::println,
                 () -> System.out.println("Vazio")
         ));
+
+        opcional1.ifPresent(System.out::println);
     }
 
     @Test
     void exercicio2(){
+        Optional<Integer> valor = Optional.of(1);
+        Optional<Integer> vazio = Optional.empty();
+        Optional<Integer> nulo = Optional.ofNullable(null);
+
+        List<Optional<Integer>> listIntegerOpt = List.of(valor, vazio, nulo);
+        listIntegerOpt.forEach(opt -> {
+            opt.ifPresentOrElse(
+                    novoOpt -> System.out.println(novoOpt * 12),
+                    () -> System.out.println(0)
+            );
+        });
     }
 }
