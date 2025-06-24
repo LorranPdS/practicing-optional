@@ -130,6 +130,5 @@ public class LearningOptionalExercises {
                 .map(UserEntity::getAddress)
                 .map(AddressEntity::getCity)
                 .ifPresent(System.out::println);
-
     }
 }

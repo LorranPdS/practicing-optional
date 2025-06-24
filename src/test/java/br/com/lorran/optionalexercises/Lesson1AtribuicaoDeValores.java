@@ -5,14 +5,21 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Optional;
 
-public class Lesson1UsesOptional {
+public class Lesson1AtribuicaoDeValores {
+
+    /**
+     Então temos 3 tipos de atribuição
+        1. atribuição de um valor que sabemos não ser nulo - Optional.of(...);
+        2. atribuição de um valor vazio - Optional.empty();
+        3. atribuição de um valor que tem a possibilidade de ser nulo - Optional.ofNullable(...);
+     */
 
     @Test
     void exercicio1(){
-        Optional<String> opcional1 = Optional.of("Java");
-        Optional<String> opcional2 = Optional.empty();
+        Optional<String> opcional1 = Optional.of("Java"); // uso da atribuição 1
+        Optional<String> opcional2 = Optional.empty(); // uso da atribuição 2
         String nomePossivelmenteNulo = null;
-        Optional<String> opcional3 = Optional.ofNullable(nomePossivelmenteNulo);
+        Optional<String> opcional3 = Optional.ofNullable(nomePossivelmenteNulo); // uso da atribuição 3
 
         List<Optional<String>> listOpt = List.of(opcional1, opcional2, opcional3);
         listOpt.forEach(opt ->

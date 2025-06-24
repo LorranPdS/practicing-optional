@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Optional;
 
-public class Lesson2UsesOptional {
+public class Lesson2EvitandoNullPointerException {
 
     @Test
     void exercicio1(){
@@ -26,8 +26,8 @@ public class Lesson2UsesOptional {
     }
 
     public static String getUpperCaseName(String nome) {
-        return Optional.ofNullable(nome)
+        return Optional.ofNullable(nome) // Situação 1 para evitar o NullPointer: verificando se ele é nulo
                 .map(String::toUpperCase)
-                .orElse("Unknown");
+                .orElse("Unknown"); // Situação 2 para evitar o NullPointer: definindo um comportamento caso seja NullPointer
     }
 }

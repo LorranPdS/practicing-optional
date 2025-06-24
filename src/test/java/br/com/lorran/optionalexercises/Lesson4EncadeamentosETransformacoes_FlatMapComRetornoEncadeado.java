@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-public class Lesson4UsesOptional {
+public class Lesson4EncadeamentosETransformacoes_FlatMapComRetornoEncadeado {
 
     /**
      class Usuario {
