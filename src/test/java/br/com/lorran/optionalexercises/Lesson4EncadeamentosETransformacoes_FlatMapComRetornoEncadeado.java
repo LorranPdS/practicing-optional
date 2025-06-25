@@ -35,7 +35,7 @@ public class Lesson4EncadeamentosETransformacoes_FlatMapComRetornoEncadeado {
     @Test
     void exercicio2(){
         var addressEntity = new AddressEntity("any address", "London");
-        var userEntity = new UserEntity("Kate", addressEntity);
+        var userEntity = new UserEntity("Kate", "", "", addressEntity);
 
         Optional<UserEntity> userOptional = Optional.of(userEntity);
         String city = userOptional.flatMap(UserEntity::getAddressOptional)

@@ -12,6 +12,8 @@ import java.util.Optional;
 public class UserEntity {
 
     private String name;
+    private String login;
+    private String password;
     private AddressEntity address;
 
     public Optional<AddressEntity> getAddressOptional(){
